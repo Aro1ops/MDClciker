@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murder Кликер</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #coin {
+            width: 40%;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        #coin.dimmed {
+            opacity: 0.5;
+        }
+        #counter {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #changeBtn {
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .shop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="counter">Счетчик кликов: <span id="clickCount">0</span></div>
+<img id="coin" src="coin.png" alt="Коин" onclick="coinClick()">
+<button id="changeBtn" onclick="showOptions()">Изменить</button>
+
+<div id="options" class="hidden">
+    <button onclick="changeCoin('coin.png')">Коин N 1</button>
+    <button onclick="changeCoin('coin2.png')">Коин tessa 2</button>
+    <button onclick="changeCoin('coin3.png')">Коин V 3</button>
+    
+    <button onclick="hideOptions()">Назад &lt;-</button>
+</div>
+
+<div class="shop" onclick="openShop()">Магазин</div>
+
+<script>
+    let clickCount = 0;
+
+    function coinClick() {
+        clickCount++;
+        document.getElementById('clickCount').innerText = clickCount;
+        const coin = document.getElementById('coin');
+        coin.classList.add('dimmed');
+        setTimeout(() => coin.classList.remove('dimmed'), 300);
+    }
+
+    function showOptions() {
+        document.getElementById('options').classList.remove('hidden');
+    }
+
+    function hideOptions() {
+        document.getElementById('options').classList.add('hidden');
+    }
+
+    function changeCoin(coinImage) {
+        document.getElementById('coin').src = coinImage;
+        hideOptions();
+    }
+
+    function openShop() {
+        
+        // Реализуйте логику магазина здесь
+    }
+</script>
+
+</body>
+</html>
+
